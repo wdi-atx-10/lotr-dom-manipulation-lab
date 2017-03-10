@@ -121,6 +121,9 @@ function forgeTheFellowShip() {
   // create a new div called 'the-fellowship' within rivendell
   // add each hobbit and buddy one at a time to 'the-fellowship'
   // after each character is added make an alert that they have joined your party
+  var fellowship = $('<div/>');
+  
+
 }
 
 
