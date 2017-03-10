@@ -22,15 +22,23 @@ var body = document.querySelector('body');
 
 // Part 1
 
+  function makeMiddleEarth() {
+    // create a section tag with an id of middle-earth
+    $section = $('<section>').attr('id', 'middle-earth');
 
-function makeMiddleEarth() {
-  // create a section tag with an id of middle-earth
-  // add each land as an article tag
-  // inside each article tag include an h1 with the name of the land
-  // append middle-earth to your document body
-}
+    // add each land as an article tag
+    for (var i=0; i<lands.length; i++) {
+      // inside each article tag include an h1 with the name of the land
+      $article = $('<article>').html('<h1>' + lands[i] + '</h1>');
 
-makeMiddleEarth();
+      $section.append($article);
+    }
+
+    // append middle-earth to your document body
+    $('body').append($section);
+  }
+
+  makeMiddleEarth();
 
 
 // Part 2
@@ -38,8 +46,14 @@ makeMiddleEarth();
 function makeHobbits() {
   // display an unordered list of hobbits in the shire (which is the second article tag on the page)
   // give each hobbit a class of hobbit
-}
+  $ul = $('article:first').append('<ul></ul>');
 
+  for (var i=0; i<=hobbits.length-1; i++) {
+    $('ul:first').append('<li class="hobbit">' + hobbits[i] + '</li>');
+  }
+
+}
+  makeHobbits();
 
 // Part 3
 
@@ -48,8 +62,15 @@ function keepItSecretKeepItSafe() {
   // give the div a class of 'magic-imbued-jewelry'
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
   // add the ring as a child of Frodo
-}
+  var frodo = $('.hobbit').eq(0);
+  var ring = $('<div/>');
+  ring.attr('id','the-ring')
+    .addClass('magic-imbued-jewelry')
+    .on('click',nazgulScreech);
+  frodo.append(ring);
 
+}
+keepItSecretKeepItSafe();
 
 // Part 4
 
@@ -58,23 +79,40 @@ function makeBuddies() {
   // create an aside tag
   // attach an unordered list of the 'buddies' in the aside
   // insert your aside as a child element of rivendell
+  var $buddyList = [];
+  var $ul = $('<ul></ul>');
+  var $aside = $('<aside/>');
+  var $rivendell = $('article').eq(1);
+
+  for (var i=0; i<=buddies.length-1; i++) {
+    var $buddy = $('<li>' + buddies[i] + '</li>');
+    $buddy.addClass('bud');
+    $buddyList.push($buddy);
+  }
+  $ul.append($buddyList);
+  $rivendell.append($ul);
 }
 
-
+makeBuddies();
 // Part 5
 
 
 function beautifulStranger() {
   // change the 'Strider' textnode to 'Aragorn'
-}
+  $('.bud').eq(3).text('Aragorn');
 
+}
+beautifulStranger();
 
 // Part 6
 
 function leaveTheShire() {
   // assemble the hobbits and move them to Rivendell
+  var $ul = $('article ul').eq(1);
+  var theHobbits = $('.hobbit');
+  $ul.append(theHobbits);
 }
-
+leaveTheShire();
 
 // Part 7
 
