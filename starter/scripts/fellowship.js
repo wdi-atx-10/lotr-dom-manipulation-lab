@@ -1,5 +1,9 @@
 console.log("Linked.");
 
+$(function(){
+  function nazgulScreech(){
+    document.getElementById("nazgul-screech").play();
+  }
 // Dramatis Personae
 var hobbits = [
   'Frodo Baggins',
@@ -24,10 +28,10 @@ var body = document.querySelector('body');
 
 
 function makeMiddleEarth() {
-  // create a section tag with an id of middle-earth
-  // add each land as an article tag
-  // inside each article tag include an h1 with the name of the land
-  // append middle-earth to your document body
+  $('body').append('<section id = middle-earth></section>');
+  for (i=0;i<lands.length;i++){
+    $('#middle-earth').append('<article><h1>'+ lands[i] +'</h1></article>');
+  }
 }
 
 makeMiddleEarth();
@@ -36,83 +40,129 @@ makeMiddleEarth();
 // Part 2
 
 function makeHobbits() {
-  // display an unordered list of hobbits in the shire (which is the second article tag on the page)
-  // give each hobbit a class of hobbit
+  $('article:nth-child(1)').append('<ul></ul>');
+  for (i=0;i<hobbits.length;i++){
+    $('article:nth-child(1) ul').append('<li class = hobbit>'+hobbits[i]+'</li>');
+  }
 }
+
+makeHobbits();
 
 
 // Part 3
 
 function keepItSecretKeepItSafe() {
-  // create a div with an id of 'the-ring'
-  // give the div a class of 'magic-imbued-jewelry'
-  // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
-  // add the ring as a child of Frodo
+  $(".hobbit:first").append('<div id = the-ring class = magic-imbued-jewelry></div>');
+  $('#the-ring').click(nazgulScreech);
+
 }
 
+keepItSecretKeepItSafe();
 
 // Part 4
 
 
 function makeBuddies() {
-  // create an aside tag
-  // attach an unordered list of the 'buddies' in the aside
-  // insert your aside as a child element of rivendell
+  $('article:nth-child(2)').append('<ul></ul>');
+  for (i=0;i<buddies.length;i++){
+    $('article:nth-child(2) ul').append('<li class = buddies>'+buddies[i]+'</li>');
+  }
 }
 
+makeBuddies();
 
 // Part 5
 
 
 function beautifulStranger() {
-  // change the 'Strider' textnode to 'Aragorn'
+  $('.buddies').eq(3).text('Aragorn');
 }
 
+beautifulStranger();
 
 // Part 6
 
 function leaveTheShire() {
-  // assemble the hobbits and move them to Rivendell
+$('article:nth-child(2) ul').append($('article:first li'));
 }
 
+leaveTheShire()
 
 // Part 7
 
 
 function forgeTheFellowShip() {
+  $('article:nth-child(2) ul').after($('<div class = the-fellowship></div>'));
+  $('.the-fellowship').append($('article:nth-child(2) ul'));
+
+
+  if (hobbits.length > buddies.length){
+    for (i=0;i<hobbits.length;i++){
+      alert(hobbits[i] + ' has joined your party.');
+      if (i < buddies.length){
+      alert(buddies[i] + ' has joined your party.');
+    }
+    }
+  }
+    else {
+      for (i=0;i<buddies.length;i++){
+        if (i < hobbits.length){
+        alert(hobbits[i] + ' has joined your party.');
+      }
+        alert(buddies[i] + ' has joined your party.');
+    }
+
+  }
+
   // create a new div called 'the-fellowship' within rivendell
   // add each hobbit and buddy one at a time to 'the-fellowship'
   // after each character is added make an alert that they have joined your party
 }
 
+forgeTheFellowShip();
 
 // Part 8
 
 
 function theBalrog() {
+  $('article:nth-child(2) ul li:first').text('Gandalf the White');
+
   // change the 'Gandalf' textNode to 'Gandalf the White'
   // apply style to the element
   // make the background 'white', add a grey border
 }
 
+theBalrog();
 
 // Part 9
 
 function hornOfGondor() {
+  alert('The Horn of Gondor has been blown.');
+  $('.the-fellowship ul li').eq(4).css('text-decoration', 'line-through');
+  $('.the-fellowship ul li').eq(4).remove();
+
+
   // pop up an alert that the horn of gondor has been blown
   // Boromir's been killed by the Uruk-hai!
   // put a linethrough on boromir's name
   // Remove Boromir from the Fellowship
 }
 
+hornOfGondor();
+
 
 // Part 10
 
 function itsDangerousToGoAlone(){
+  $('article:nth-child(3)').append($('.the-fellowship li:eq(4)'));
+  $('article:nth-child(3)').append($('.the-fellowship li:eq(5)'));
+
+
   // take Frodo and Sam out of the fellowship and move them to Mordor
   // add a div with an id of 'mount-doom' to Mordor
 }
 
+itsDangerousToGoAlone();
 
 // Part 11
 
@@ -130,3 +180,5 @@ function thereAndBackAgain() {
   // remove all the baddies from the document
   // Move all the hobbits back to the shire
 }
+
+});
