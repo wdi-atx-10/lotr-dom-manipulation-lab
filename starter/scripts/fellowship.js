@@ -1,3 +1,6 @@
+$( document ).ready(function() {
+    console.log( "ready!" );
+
 console.log("Linked.");
 
 // Dramatis Personae
@@ -22,15 +25,37 @@ var body = document.querySelector('body');
 
 // Part 1
 
-
 function makeMiddleEarth() {
+
+
+    // Your existing code unmodified...
+  //var iDiv = document.createElement('div');
+  //iDiv.id = 'block';
+  //iDiv.className = 'block';
+  //document.getElementsByTagName('body')[0].appendChild(iDiv);
+
+  // Now create and append to iDiv
+  //var innerDiv = document.createElement('div');
+  //innerDiv.className = 'block-2';
+
+  // The variable iDiv is still good... Just append to it.
+  //iDiv.appendChild(innerDiv);
+
   // create a section tag with an id of middle-earth
   // add each land as an article tag
   // inside each article tag include an h1 with the name of the land
   // append middle-earth to your document body
+
+  //var sectiontagmiddleearth = document.createElement('section');
+  //var middleearthsection = $('#middle-earth').html("<section></section>");
+  $("body").append('<section id="middle-earth"></section>');
+  for(var i=0;i<lands.length;i++){
+    var landvalue = lands[i];
+    $("#middle-earth").append('<article><h1>'+landvalue+'</h1></article>');
+  }
 }
 
-makeMiddleEarth();
+setTimeout(function(){makeMiddleEarth()},500);
 
 
 // Part 2
@@ -38,8 +63,16 @@ makeMiddleEarth();
 function makeHobbits() {
   // display an unordered list of hobbits in the shire (which is the second article tag on the page)
   // give each hobbit a class of hobbit
+  $hobbitlist = $('<ul>').attr("id","hobbitslist");
+  for(var i=0;i<hobbits.length;i++){
+    $list = $("<ul>").html("<li class='hobbits'>"+hobbits[i]+"</li>");
+    $hobbitlist.append($list);
+  }
+
+  $("article").eq(0).append($hobbitlist);
 }
 
+setTimeout(function(){makeHobbits()},1500);
 
 // Part 3
 
@@ -48,8 +81,15 @@ function keepItSecretKeepItSafe() {
   // give the div a class of 'magic-imbued-jewelry'
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
   // add the ring as a child of Frodo
+  $thering = $('<div class="magic-imbued-jewelry" id="the-ring">');
+  //$thering.addClass("magic-imbued-jewelry");
+  $thering.click(function(){
+    nazgulScreech();
+  });
+  $("ul:nth-child(1)").append($thering);
 }
 
+setTimeout(function(){keepItSecretKeepItSafe()},2500);
 
 // Part 4
 
@@ -130,3 +170,4 @@ function thereAndBackAgain() {
   // remove all the baddies from the document
   // Move all the hobbits back to the shire
 }
+});
