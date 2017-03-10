@@ -1,5 +1,6 @@
 console.log("Linked.");
 
+$(function(){
 // Dramatis Personae
 var hobbits = [
   'Frodo Baggins',
@@ -28,6 +29,14 @@ function makeMiddleEarth() {
   // add each land as an article tag
   // inside each article tag include an h1 with the name of the land
   // append middle-earth to your document body
+$section = $('<section>').attr('id', 'middle-earth');
+
+for(i=0;i<lands.length;i++) {
+  $article = $('<article>').html('<h1>'+lands[i]+'</h1>');
+  $section.append($article);
+}
+
+$('body').append($section);
 }
 
 makeMiddleEarth();
@@ -38,7 +47,14 @@ makeMiddleEarth();
 function makeHobbits() {
   // display an unordered list of hobbits in the shire (which is the second article tag on the page)
   // give each hobbit a class of hobbit
-}
+
+$('article').eq(0).append('<ul>');
+for(var i=0; i<hobbits.length; i++){
+  $('ul').append('<li>'+hobbits[i]+'</li>');
+  $('li').addClass('hobbit');
+};
+};
+makeHobbits();
 
 
 // Part 3
@@ -48,7 +64,14 @@ function keepItSecretKeepItSafe() {
   // give the div a class of 'magic-imbued-jewelry'
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
   // add the ring as a child of Frodo
-}
+  $div=$('<div>').attr('id','the-ring').addClass('magic-imbued-jewelry');
+
+  $('#the-ring').on('click',nazgulScreech());
+
+  $('.hobbit').eq(0).append($div);
+};
+
+keepItSecretKeepItSafe();
 
 
 // Part 4
@@ -58,9 +81,16 @@ function makeBuddies() {
   // create an aside tag
   // attach an unordered list of the 'buddies' in the aside
   // insert your aside as a child element of rivendell
+$aside=$('<aside>');
+$('article').eq(1).append($aside);
+$ul=$('<ul>');
+for(var i=0;i<buddies.length;i++){
+  $ul.append('<li>'+buddies[i]+'</li>');
+}
+$('aside').append($ul);
 }
 
-
+makeBuddies();
 // Part 5
 
 
@@ -130,3 +160,4 @@ function thereAndBackAgain() {
   // remove all the baddies from the document
   // Move all the hobbits back to the shire
 }
+});
