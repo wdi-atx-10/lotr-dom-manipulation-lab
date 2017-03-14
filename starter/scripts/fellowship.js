@@ -24,10 +24,10 @@ var body = document.querySelector('body');
 
 
 function makeMiddleEarth() {
-  $('body').append('#middle-earth').html('<section></section>');
-  for(var i=0; i<lands;i++){
+  $('body').append('#middle-earth').html('<section id="middle-earth"></section>');
+  for(var i=0; i<lands.length;i++){
     var landValue = lands[i];
-    $('#middle-earth').append('<article><h1>'+landValue+'</article>');
+    $('#middle-earth').append('<article><h1>'+landValue+'</h1><ul id=article'+i+'></ul></article>');
   }
 }
   // add each land as an article tag
@@ -47,10 +47,10 @@ makeMiddleEarth();
 function makeHobbits() {
   // display an unordered list of hobbits in the shire (which is the second article tag on the page)
   // give each hobbit a class of hobbit
-  $unorderedList = $('<ul>').attr('class', 'hobbits');
+  $unorderedList = $('#article0');
   for(var i=0;i<hobbits.length; i++) {
-    $list = $('<ul>').html('<li>' +hobbit[i] +'</li>');
-    $unorderedList.after($section);
+    $list = $('<li>').html(hobbits[i]);
+    $unorderedList.append($list);
 
   }
 }
@@ -63,12 +63,12 @@ function keepItSecretKeepItSafe() {
   // give the div a class of 'magic-imbued-jewelry'
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
   // add the ring as a child of Frodo
-  $thering = $('<div class="magic-imbued-jewelry" id="the-ring">');
+  $thering = $('<div class="magic-imbued-jewelry" id="the-ring"></div>');
   //$thering.addClass("magic-imbued-jewelry");
   $thering.click(function(){
     nazgulScreech();
   });
-  $("ul:nth-child(1)").append($thering);
+  $("#article0 li:nth-child(1)").append($thering);
 }
 setTimeout(function(){keepItSecretKeepItSafe()},2500);
 
@@ -79,15 +79,15 @@ function makeBuddies() {
   // create an aside tag
   // attach an unordered list of the 'buddies' in the aside
   // insert your aside as a child element of rivendell
-  $asideTag = $('<aside>').attr('id', 'buddiesList');
-  for(var i=0;i<buddies;i++){
+  $asidetag = $('<aside>').attr('id', 'buddiesList');
+  for(var i=0;i<buddies.length;i++){
     $list2 = $('<ul>').html('<li>' +buddies[i]+ '</li>');
-    $asideTag.append($list2);
+    $asidetag.append($list2);
 }
     $('article').eq(1).append($asidetag);
 }
-setTimeout(function(){makeBuddies()},3500);
-
+//setTimeout(function(){makeBuddies()},3500);
+makeBuddies();
 // Part 5
 
 
@@ -118,7 +118,7 @@ function leaveTheShire() {
   })
 
 }
-setTimeout(function(){leaveTheShire()},5500);
+//setTimeout(function(){leaveTheShire()},5500);
 
 // Part 7
 
@@ -140,7 +140,7 @@ function forgeTheFellowShip() {
 }
 
 
-setTimeout(function(){forgeTheFellowShip()},6500);
+//setTimeout(function(){forgeTheFellowShip()},6500);
 
 // Part 8
 
@@ -161,7 +161,7 @@ function theBalrog() {
 
 }
 
-setTimeout(function(){theBalrog()},7500);
+//setTimeout(function(){theBalrog()},7500);
 
 
 // Part 9
@@ -191,7 +191,7 @@ setTimeout(function(){
 
 }
 
-setTimeout (function(){hornOfGondor()},8500);
+//setTimeout (function(){hornOfGondor()},8500);
 
 // Part 10
 
@@ -203,7 +203,8 @@ function itsDangerousToGoAlone(){
         $('h1:contains("Mordor")').append($(this));
       }
     });
-setTimeout(function(){itsDangerousToGoAlone()},10500);
+  }
+//setTimeout(function(){itsDangerousToGoAlone()},10500);
 
 // Part 11
 
@@ -222,7 +223,7 @@ function itsDangerousToGoAlone(){
 
 }
 
-setTimeout(function(){itsDangerousToGoAlone()},10500);
+//setTimeout(function(){itsDangerousToGoAlone()},10500);
 
 // Part 12
 
@@ -230,16 +231,16 @@ function thereAndBackAgain() {
   // remove Gollum and the Ring from the document
   // remove all the baddies from the document
   // Move all the hobbits back to the shire
-  $('#gollum').remove();
-  $('#theRing').remove();
-  $('#mount-doom').remove();
+  $("#gollum").remove();
+  $("#the-ring").remove();
+  $("#mount-doom").remove();
 
   $("li").each(function(){
     console.log($(this).attr("class"));
     if($(this).attr("class")==="hobbits"){
       $("h1:contains('The Shire')").append($(this));
     }
-  });
+  })
 }
-setTimeout(function(){thereAndBackAgain()},12500);
 
+//setTimeout(function(){thereAndBackAgain()},12500);
