@@ -1,5 +1,12 @@
 console.log("Linked.");
 
+// $(function(){
+//   function nazgulScreech(){
+//     document.getElementById("nazgul-screech").play();
+// }
+
+
+$(document).ready(function(){
 // Dramatis Personae
 var hobbits = [
   'Frodo Baggins',
@@ -24,8 +31,20 @@ var body = document.querySelector('body');
 
 
 function makeMiddleEarth() {
+//answers
+//$section = $('<section>').attr('id, 'middle-earth');
+//for (var i=0; i<lands.length; i++) {
+//$article = $('<article).html('<h1>' + lands[i] +' </h1> ');
+//$section.append)$article);
+//}
+  $('body').append('<section id = middle-earth></section>');
   // create a section tag with an id of middle-earth
+    for(var i=0; i<lands; i++) {
+    $('#middle-earth').append('<article><h1>' + lands [i] + '</h1></article>');
+     }
   // add each land as an article tag
+
+
   // inside each article tag include an h1 with the name of the land
   // append middle-earth to your document body
 }
@@ -34,46 +53,62 @@ makeMiddleEarth();
 
 
 // Part 2
+// display an unordered list of hobbits in the shire (which is the second article tag on the page) // give each hobbit a class of hobbit
 
-function makeHobbits() {
-  // display an unordered list of hobbits in the shire (which is the second article tag on the page)
-  // give each hobbit a class of hobbit
-}
+ function makeHobbits() {
+   $('article:nth-child(1)').append('<ul></ul>');
+   for (i=0;i<hobbits.length;i++){
+   $('article:nth-child(1) ul').append('<li class = hobbit>'+hobbits[i]+'</li>');
+   }
+  }
 
+ makeHobbits();
 
 // Part 3
 
-function keepItSecretKeepItSafe() {
+ $(".hobbit:first").append('<div id = the-ring class = magic-imbued-jewelry></div>');
+ $('#the-ring').click(nazgulScreech);
+
+keepItSecretKeepItSafe();
   // create a div with an id of 'the-ring'
   // give the div a class of 'magic-imbued-jewelry'
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
   // add the ring as a child of Frodo
-}
+
 
 
 // Part 4
 
-
-function makeBuddies() {
-  // create an aside tag
-  // attach an unordered list of the 'buddies' in the aside
-  // insert your aside as a child element of rivendell
+ function makeBuddies() {
+// create an aside tag
+// attach an unordered list of the 'buddies' in the aside
+// insert your aside as a child element of rivendell
+ $('article:nth-child(2)').append('<ul></ul>');
+   for (i=0;i<buddies.length;i++){
+   $('article:nth-child(2) ul').append('<li class = buddies>'+buddies[i]+'</li>');
+  }
 }
+
+makeBuddies();
 
 
 // Part 5
-
-
 function beautifulStranger() {
-  // change the 'Strider' textnode to 'Aragorn'
+// change the 'Strider' textnode to 'Aragorn'
+$('.buddies').eq(3).text('Aragorn');
 }
 
+beautifulStranger();
+//erroring out?????
 
 // Part 6
 
-function leaveTheShire() {
-  // assemble the hobbits and move them to Rivendell
-}
+//  function leaveTheShire() {
+//  // assemble the hobbits and move them to Rivendell
+// $('article:nth-child(2) ul').append($('article:first li'));
+// }
+
+// leaveTheShire()
 
 
 // Part 7
