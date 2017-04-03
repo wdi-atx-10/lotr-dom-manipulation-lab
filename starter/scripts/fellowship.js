@@ -28,7 +28,12 @@ function makeMiddleEarth() {
   // add each land as an article tag
   // inside each article tag include an h1 with the name of the land
   // append middle-earth to your document body
+  $('<section id="middle-earth"></section>').prependTo('body');
+  for (var i = 0; i < lands.length; i++) {
+    $('<article><h1>' + lands[i] + '</h1></article>').appendTo('section');
+  }
 }
+
 
 makeMiddleEarth();
 
@@ -37,19 +42,30 @@ makeMiddleEarth();
 
 function makeHobbits() {
   // display an unordered list of hobbits in the shire (which is the second article tag on the page)
+  $('article').eq(0).append('<ul>');
+  for (var i = 0; i < hobbits.length; i++) {
+    $('ul').append('<li>' + hobbits[i] + '</li>');
+    $('li').addClass('hobbit');
+
+  }
   // give each hobbit a class of hobbit
 }
-
+makeHobbits();
 
 // Part 3
 
 function keepItSecretKeepItSafe() {
   // create a div with an id of 'the-ring'
+  $div = $('<div>').attr('id', 'the-ring');
   // give the div a class of 'magic-imbued-jewelry'
+  $('div').addClass('magic-imbued-jewelry');
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
+  $('div').click(nazgulScreech);
   // add the ring as a child of Frodo
+  $('.hobbits').eq(1).append("div");
 }
 
+keepItSecretKeepItSafe();
 
 // Part 4
 
